@@ -4,4 +4,4 @@
 Этот репозиторий являетсgя каркасом для будущего веб-приложения.
 
 ## Ссылки
-- [Публичная страница на GitHub Pages](https://github.com/ceoOFhvh/project123/src/index.html)
+- [Публичная страница на GitHub Pages](https://ceoofhvh.github.io/project123/src/index.html)
