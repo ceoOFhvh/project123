@@ -8,22 +8,31 @@
     <meta name="description" content="Краткое описание главной страницы вашего сайта">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <script src="main.js" defer></script> 
+    <script src="main.js" defer></script>
+    <style>
+        body {
+            background: linear-gradient(rgb(197, 131, 131), white);
+        }
+    </style>
 </head>
 
 <body>
     <!-- Шапка сайта -->
-    <header>
-        <a href="/">Логотип или название сайта</a>
-        <!-- Главное меню навигации -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="about.html">О нас</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
+    <header class="site-header">
+        <a class="site-header__brand" href="/">Наш сайт</a>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <ul class="site-nav__list">
+                <li class="site-nav__item"><a class="site-nav__link onas" href="index.html">Главная</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="about.html">О нас</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
             </ul>
         </nav>
     </header>
+
+    <img>
+    <!-- width/height уменьшают «скачок» макета (CLS); alt обязателен -->
+    <img src="img/i.jpg" alt="Проект: макет мобильного приложения" width="640" height="360" loading="lazy"
+        decoding="async">
 
     <!-- Уникальное основное содержимое страницы -->
     <main>
@@ -35,6 +44,14 @@
             <p>Описание предоставляемых услуг...</p>
             <a href="#contacts">Связаться с нами</a> <!-- Якорная ссылка внутри страницы -->
         </section>
+
+        <!-- Вставка с Rutube; замените XXXXXXXXXXXX на ID ролика -->
+        <div class="media">
+            <iframe src="https://rutube.ru/play/embed/e73f27e3338b14fd99b12b9a8f34d72b"
+                title="Правила безопасности от Котэ" <!-- важно для доступности -->
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                allowfullscreen loading="lazy"></iframe>
+        </div>
 
         <!-- Секция 2 с якорем -->
         <section id="portfolio">
@@ -87,5 +104,22 @@
         <p>Телефон: +7 (123) 456-78-90</p>
     </footer>
 </body>
+<button class="theme-toggle" type="button" aria-pressed="false">Тема</button>
+<script defer>
+    const KEY = 'theme', btn = document.querySelector('.theme-toggle');
+    const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    // Автовыбор: системная тема или сохранённый выбор пользователя 
+    if (localStorage.getItem(KEY) === 'dark' || (!localStorage.getItem(KEY) &&
+        prefersDark)) {
+        document.body.classList.add('theme-dark');
+        btn?.setAttribute('aria-pressed', 'true');
+    }
+    // Переключение по кнопке с сохранением в localStorage 
+    btn?.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('theme-dark');
+        btn.setAttribute('aria-pressed', String(isDark));
+        localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+    }); 
+</script>
 
 </html>
